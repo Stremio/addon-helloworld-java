@@ -14,7 +14,7 @@ import java.util.Optional;
 @RestController
 //more about manifest definition here https://github.com/Stremio/stremio-addon-sdk/blob/master/docs/api/responses/manifest.md
 public class AddonControler {
-Manifest manifest = new Manifest("org.stremio.javaExample", "0.0.1", "JavaAddon", "Example Addon In Java", new String[0] , new String[] {"catalog", "stream", "subtitles"} , new String[] {"movie"}, new Catalog[] {new Catalog("movie", "otherTestCatalog", "OtherJavaCatalog", new String[] {}, new String[0], new String[] {"search"})}, "","https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/364px-Java-Logo.svg.png", "contact@stremio.com" );
+Manifest manifest = new Manifest("org.stremio.javaExample", "0.0.4", "JavaAddon", "Example Addon In Java", null , new String[] {"catalog", "stream", "subtitles"} , new String[] {"movie", "series"}, new Catalog[] {new Catalog("movie", "otherTestCatalog", "OtherJavaCatalog", new String[] {}, new String[0], new String[] {"search"})}, "","https://upload.wikimedia.org/wikipedia/de/thumb/e/e1/Java-Logo.svg/364px-Java-Logo.svg.png", "contact@stremio.com" );
 @RequestMapping(value = "/manifest.json")
 @CrossOrigin
 public Manifest produceManifest()
@@ -26,8 +26,8 @@ public Manifest produceManifest()
 @CrossOrigin
 public Subtitles getSubtitles(){
     Subtitles subs = new Subtitles();
-    subs.addSubtitle("en", "https://mkvtoolnix.download/samples/vsshort-en.srt");
-    subs.addSubtitle("de", "https://mkvtoolnix.download/samples/vsshort-de.srt");
+    subs.add("en", "https://mkvtoolnix.download/samples/vsshort-en.srt");
+    subs.add("de", "https://mkvtoolnix.download/samples/vsshort-de.srt");
     return subs;
 }
 @RequestMapping(value = {"/catalog/{type}/{id}.json","/catalog/{type}/{id}/{extra}.json"})
